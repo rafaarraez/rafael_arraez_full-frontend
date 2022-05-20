@@ -106,7 +106,8 @@ export const HeroContainer = styled.section`
     }
 `;
 
-export const LinkButton = styled.a`
+export const LinkButton = styled.span`
+    cursor: pointer;
     text-decoration: none;
     color: var(--white);
     font-size: 1.4rem;

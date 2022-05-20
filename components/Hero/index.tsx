@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import { HeroContainer, LinkButton } from "./hero-styles";
 import ArrowIcon from "../ArrowIcon";
 import { FiArrowRight } from "react-icons/fi";
+import { signIn } from "next-auth/react"
 
 const Hero: NextPage = () => {
   return (
@@ -18,7 +19,10 @@ const Hero: NextPage = () => {
         <p className="hero__subtitle">
           Accede a tu cuenta para guardar tus albumes favoritos.
         </p>
-        <LinkButton href="/search">
+        <LinkButton onClick={() => signIn('spotify', {
+          callbackUrl: `${window.location.origin}/search`,
+        })}
+        >
           Login
           <span>
             <FiArrowRight size={20} />
