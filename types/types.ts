@@ -60,3 +60,19 @@ export interface SearchResults {
         items: Album[];
     };
 }
+
+export interface Paginate {
+    contentPerPage: number;
+    countStart: number;
+    countEnd: number;
+    currentPage: number;
+    totalPages: number;
+    totalItems: number;
+}
+
+export interface UsePagination {
+    totalCount: number;
+    pageSize: number;
+    siblingCount: number;
+    currentPage: number;
+}

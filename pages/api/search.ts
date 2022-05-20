@@ -10,7 +10,8 @@ export default async function handler(
 
     const session = await getSession({ req });
 
-    if (!session) {
+    if (!session ||
+        Math.floor(Date.now()) >= (session as any).accessTokenExpires * 1000) {
         res.status(401).json('unauthorized');
     }
 

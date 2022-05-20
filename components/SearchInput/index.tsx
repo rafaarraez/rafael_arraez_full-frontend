@@ -3,7 +3,7 @@ import { SearchContainer } from "./search-styles";
 import ButtonPrimary from "../ButtonPrimary";
 
 
-const SearchInput: React.FC<any> = ({ setQuery }) => {
+const SearchInput: React.FC<any> = ({ setSearchData }) => {
   const [value, setValue] = useState<string>("");
 
   return (
@@ -16,7 +16,7 @@ const SearchInput: React.FC<any> = ({ setQuery }) => {
         onChange={(e) => setValue(e.target.value)}
       />
       <div className="button__wrapper" >
-        <ButtonPrimary text="Search" paddingBtn="30%" click={() => setQuery(value)} />
+        <ButtonPrimary text="Search" paddingBtn="30%" click={() => setSearchData({ query: value, offset: 0 })} />
       </div>
     </SearchContainer>
   )
