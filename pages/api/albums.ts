@@ -15,7 +15,7 @@ export default async function handler(
     }
 
     const searchResults = await customGet(
-        `https://api.spotify.com/v1/me/albums?offset=${offset}&limit=50`,
+        `https://api.spotify.com/v1/me/albums?limit=50`,
         session!
     );
     res.status(200).json(searchResults);

@@ -5,11 +5,11 @@ import {
   MdOutlineArrowForwardIos,
 } from "react-icons/md";
 
-const Paginator: React.FC<any> = ({ nextP, prevP, pagesT, current }: any) => {
+const Paginator: React.FC<any> = ({ nextP, prevP, pagesT, current, setOffset, currentOffset }: any) => {
 
   return (
     <PaginatorContainer>
-      <button onClick={prevP}>
+      <button onClick={() => setOffset(currentOffset - 8)} disabled={currentOffset === 0}>
         <MdOutlineArrowBackIos color={"var(--white)"} size={20} />
       </button>
 
@@ -24,7 +24,7 @@ const Paginator: React.FC<any> = ({ nextP, prevP, pagesT, current }: any) => {
         {"item"}
       </p>
 
-      <button onClick={nextP}>
+      <button onClick={() => setOffset(currentOffset + 8)}>
         <MdOutlineArrowForwardIos color={"var(--white)"} size={20} />
       </button>
     </PaginatorContainer>

@@ -5,7 +5,7 @@ import ButtonPrimary from "../ButtonPrimary";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 
 const CardAlbum: React.FC<any> = ({ dataAlbum, isActive }: any) => {
-  const { title, datePub, coverAlbum } = dataAlbum;
+  const { name, release_date, images } = dataAlbum;
 
   const sanitizeString = (str: string) => {
     let newStr = str.substring(0, 15);
@@ -15,10 +15,10 @@ const CardAlbum: React.FC<any> = ({ dataAlbum, isActive }: any) => {
 
   return (
     <CardAlbumContainer>
-      <img src={dataAlbum.images[0].url} alt="" />
+      <img src={images[0].url} alt={name} />
       <div className="card-info__wrapper">
-        <p className="card__title">{sanitizeString(dataAlbum.name)}</p>
-        <p className="card__date-pub">Publicado: {dataAlbum.release_date}</p>
+        <p className="card__title">{sanitizeString(name)}</p>
+        <p className="card__date-pub">Publicado: {release_date}</p>
         <div>
           <ButtonPrimary
             text="Add album"

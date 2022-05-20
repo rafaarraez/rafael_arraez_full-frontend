@@ -23,7 +23,7 @@ export default NextAuth({
                     accessToken: account.access_token,
                     refreshToken: account.refresh_token,
                     username: account.providerAccountId,
-                    accessTokenExpires: account.expires_at! * 1000, // milliseconds
+                    accessTokenExpires: account.expires_at!, // milliseconds
                 };
             }
 

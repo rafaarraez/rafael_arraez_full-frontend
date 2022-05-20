@@ -10,6 +10,7 @@ export const CardAlbumContainer = styled.div`
   // end
   img {
     width: 100%;
+    border-radius: 20px;
   }
   .card-info__wrapper {
     padding-top: 25px;

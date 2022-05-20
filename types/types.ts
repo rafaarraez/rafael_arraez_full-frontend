@@ -3,15 +3,16 @@ import { DefaultSession } from "next-auth";
 interface MyUser {
     name?: string | null;
     email?: string | null;
-    picture?: string | null;
     image?: string | null;
-    accessToken?: string | null;
 }
 
 export interface MySession extends Omit<DefaultSession, "user"> {
     user?: MyUser;
     expires: string;
-    accessToken?: string | null;
+    accessToken?: string;
+    refreshToken?: string;
+    username?: string;
+    accessTokenExpires?: number | undefined;
 }
 
 interface Image {
@@ -21,20 +22,19 @@ interface Image {
 }
 
 export interface Album {
-    id: string;
-    name: string;
-    artists: [Artist];
-    images?: [Image];
-    album_type?: string;
-    release_date?: string;
-    total_tracks?: number;
-    type: string;
-    external_urls: { spotify: string };
+    album?: Album[];
+    album_type: string;
+    artists: Artist[];
+    external_urls: ExternalUrls;
     href: string;
+    id: string;
+    images: Image[];
+    name: string;
+    release_date: Date;
     release_date_precision: string;
+    total_tracks: number;
+    type: string;
     uri: string;
-    album?: Album;
-    added_at: Date;
 }
 
 export interface Artist {
@@ -45,12 +45,18 @@ export interface Artist {
         total: number;
     };
     genres?: [string];
+    external_urls: ExternalUrls;
+    type?: string;
+}
+
+export interface ExternalUrls {
+    spotify: string;
 }
 
 
 
 export interface SearchResults {
-    albums?: {
+    albums: {
         items: Album[];
     };
 }

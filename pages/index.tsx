@@ -1,5 +1,6 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import { getSession } from 'next-auth/react';
+import Head from 'next/head';
 import Hero from "../components/Hero";
 import { isAuthenticated } from '../utils/isAuthenticated';
 
@@ -7,6 +8,9 @@ import { isAuthenticated } from '../utils/isAuthenticated';
 const Home: NextPage = () => {
   return (
     <>
+      <Head>
+        <title>Login with Spotify</title>
+      </Head>
       <Hero />
     </>
   )

@@ -6,14 +6,6 @@ import { Album } from "../../types/types";
 
 const ListOfAlbumCards: React.FC<any> = ({ albums, isAdded }) => {
 
-  useEffect(() => {
-    console.log('test', albums);
-
-    albums?.map((album: Album) => {
-      console.log('algo raro', album);
-    })
-  }, [albums])
-
   return (
     <ListOfAlbumCardsContainer>
 

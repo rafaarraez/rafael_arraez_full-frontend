@@ -8,22 +8,25 @@ import HeroAlbum from '../components/HeroAlbum';
 import ListOfAlbumCards from '../components/ListOfAlbumCards';
 import { getSession } from 'next-auth/react';
 import { isAuthenticated } from '../utils/isAuthenticated';
-import axios from 'axios'
+import axios from 'axios';
+import Head from 'next/head';
 
 
 const ASAlbumDetail: NextPage = () => {
   const [albums, setAlbums] = useState([]);
 
   useEffect(() => {
-
-    const getAlbumsSaved = async (offset: number = 0) => {
-      const { data } = await axios(`/api/albums?offset=${offset}`);
+    const getAlbumsSaved = async () => {
+      const { data } = await axios(`/api/albums`);
       setAlbums(data.items);
     }
     getAlbumsSaved();
   }, [])
   return (
     <>
+      <Head>
+        <title>Albums</title>
+      </Head>
       <MainSearch>
         <HeroAlbum isAdded={true}>
         </HeroAlbum>

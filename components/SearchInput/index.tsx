@@ -3,9 +3,8 @@ import { SearchContainer } from "./search-styles";
 import ButtonPrimary from "../ButtonPrimary";
 
 
-const SearchInput: React.FC<any> = ({ searchAlbums }) => {
-  const [query, setQuery] = useState<string>("");
-
+const SearchInput: React.FC<any> = ({ setQuery }) => {
+  const [value, setValue] = useState<string>("");
 
   return (
     <SearchContainer>
@@ -14,10 +13,10 @@ const SearchInput: React.FC<any> = ({ searchAlbums }) => {
         name="search"
         placeholder="Busca alguna cancion...."
         className="search__input"
-        onChange={(e) => setQuery(e.target.value)}
+        onChange={(e) => setValue(e.target.value)}
       />
       <div className="button__wrapper" >
-        <ButtonPrimary text="Search" paddingBtn="30%" click={() => searchAlbums(query, 0)} />
+        <ButtonPrimary text="Search" paddingBtn="30%" click={() => setQuery(value)} />
       </div>
     </SearchContainer>
   )
