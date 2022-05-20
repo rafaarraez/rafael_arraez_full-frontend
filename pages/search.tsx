@@ -16,32 +16,34 @@ import { MainSearch } from "../styles/layout";
 import { getSession, useSession } from "next-auth/react";
 import { getToken } from "next-auth/jwt"
 import { isAuthenticated } from "../utils/isAuthenticated";
+import axios from 'axios'
 
 const ASSearch: NextPage<any> = () => {
   const [pagination, setPagination] = useState({
     contentPerPage: 1,
-    countStart: 0,
-    countEnd: 0,
+    countStart: 1,
+    countEnd: 100,
     currentPage: 1,
-    totalPages: 0,
+    totalPages: 10,
   });
   const [pages, setPages] = useState<any>([]);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState([]);
   const searchInput = useRef<any>(null);
 
-  const { data: session, status } = useSession()
-  console.log(session, status);
+  const searchAlbums = async (query: string, offset: number = 0) => {
+    const { data: { albums } } = await axios(`/api/search?query=${query}&offset=${offset}`);
+    setSearch(albums.items);
+  }
 
   return (
-
     <>
       <MainSearch>
         <HeroAlbum isAdded={false}>
-          <SearchInput />
+          <SearchInput searchAlbums={searchAlbums} />
         </HeroAlbum>
 
-        <ListOfAlbumCards />
-        <Paginator />
+        <ListOfAlbumCards isAdded={false} albums={search} />
+        <Paginator paginates={search} />
       </MainSearch>
     </>
   );

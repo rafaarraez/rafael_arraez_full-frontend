@@ -4,11 +4,6 @@ import { GlobalStyle } from "../styles/global";
 import { SessionProvider } from "next-auth/react"
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
-  // const router = useRouter();
-  // const { code } = router.query
-  // console.log(code);
-
-  // if (code) router.push('/search')
 
   return (
     <SessionProvider session={session}>

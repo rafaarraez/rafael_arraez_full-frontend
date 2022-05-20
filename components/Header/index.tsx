@@ -5,11 +5,14 @@ import { AmHeader } from "./header-styles";
 import Link from "next/link";
 import { FiSun } from "react-icons/fi";
 import { IoLogOutOutline } from "react-icons/io5";
+import { useSession } from "next-auth/react";
+import { signOut } from "next-auth/react"
 
 const Header: React.FC = () => {
   const router = useRouter();
   const [matches, setMatches] = useState(false);
   const user = false;
+  const { data: session, status } = useSession()
 
   return (
     <AmHeader>
@@ -33,7 +36,7 @@ const Header: React.FC = () => {
             )}
           </a>
         </Link>
-        {user && (
+        {session && (
           <div className="header-links__container">
             <Link href="/search">
               <a
@@ -58,7 +61,9 @@ const Header: React.FC = () => {
               </a>
             </Link>
             <hr />
-            <button className="text__item header__button">
+            <button className="text__item header__button" onClick={() => signOut({
+              callbackUrl: `${window.location.origin}/`,
+            })}>
               {!matches ? (
                 "Cerrar Sesion"
               ) : (

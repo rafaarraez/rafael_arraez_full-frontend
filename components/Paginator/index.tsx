@@ -6,24 +6,23 @@ import {
 } from "react-icons/md";
 
 const Paginator: React.FC<any> = ({ nextP, prevP, pagesT, current }: any) => {
- 
+
   return (
     <PaginatorContainer>
       <button onClick={prevP}>
         <MdOutlineArrowBackIos color={"var(--white)"} size={20} />
       </button>
-      
-          <p
-            className="paginator__item"
-            style={
-              "item" === current
-                ? { color: "var(--primary-yellow)", fontWeight: "700" }
-                : { color: "var(--white)" }
-            }
-          >
-            {"item"}
-          </p>
-        );
+
+      <p
+        className="paginator__item"
+        style={
+          "item" === current
+            ? { color: "var(--primary-yellow)", fontWeight: "700" }
+            : { color: "var(--white)" }
+        }
+      >
+        {"item"}
+      </p>
 
       <button onClick={nextP}>
         <MdOutlineArrowForwardIos color={"var(--white)"} size={20} />

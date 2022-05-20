@@ -29,7 +29,12 @@ export interface Album {
     release_date?: string;
     total_tracks?: number;
     type: string;
-
+    external_urls: { spotify: string };
+    href: string;
+    release_date_precision: string;
+    uri: string;
+    album?: Album;
+    added_at: Date;
 }
 
 export interface Artist {

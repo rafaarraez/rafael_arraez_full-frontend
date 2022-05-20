@@ -14,7 +14,7 @@ export const CardAlbumContainer = styled.div`
   .card-info__wrapper {
     padding-top: 25px;
     .card__title {
-      font-size: 3.8rem;
+      font-size: 3rem;
       font-weight: 600;
       margin-bottom: 15px;
     }
