@@ -1,11 +1,9 @@
 import type { GetServerSideProps, NextPage } from "next";
 import React, { useState, useEffect } from "react";
-
 import SearchInput from "../components/SearchInput";
 import HeroAlbum from "../components/HeroAlbum";
 import ListOfAlbumCards from "../components/ListOfAlbumCards";
 import Paginator from "../components/Paginator";
-
 import { MainSearch } from "../styles/layout";
 import { getSession } from "next-auth/react";
 import { isAuthenticated } from "../utils/isAuthenticated";
@@ -24,29 +22,37 @@ const ASSearch: NextPage<any> = () => {
   });
   const [pages, setPages] = useState<any>([]);
   const [searchData, setSearchData] = useState({
-    query: 'nirvara',
+    query: 'nirvana',
     offset: 0
   })
   const [searchResults, setSearchResults] = useState<Album[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
 
     const searchAlbums = async () => {
-      const { data: { albums } } = await axios(`/api/search?query=${searchData.query}&offset=${searchData.offset}`);
-      console.log(albums);
-      setPagination({
-        contentPerPage: albums.limit,
-        countStart: 1,
-        countEnd: Math.ceil(albums.total / albums.limit),
-        currentPage: Math.ceil((albums.offset + albums.limit) / albums.limit),
-        totalPages: Math.ceil(albums.total / albums.limit),
-        totalItems: albums.total
-      })
-      setSearchResults(albums.items);
+      setIsLoading(true);
+      try {
+        const { data: { albums } } = await axios(`/api/search?query=${searchData.query}&offset=${searchData.offset}`);
+        console.log(albums);
+        setPagination({
+          contentPerPage: albums.limit,
+          countStart: 1,
+          countEnd: Math.ceil(albums.total / albums.limit),
+          currentPage: Math.ceil((albums.offset + albums.limit) / albums.limit),
+          totalPages: Math.ceil(albums.total / albums.limit) - 50,
+          totalItems: albums.total
+        })
+        setSearchResults(albums.items);
+      } catch (error) {
+        console.log(error);
+      }
+      setIsLoading(false);
     }
-
     searchAlbums();
   }, [searchData]);
+
+
 
   return (
     <>
@@ -59,7 +65,7 @@ const ASSearch: NextPage<any> = () => {
           <SearchInput setSearchData={setSearchData} />
         </HeroAlbum>
 
-        <ListOfAlbumCards isAdded={false} albums={searchResults} />
+        {isLoading ? <h1>LODING DATRA</h1> : <ListOfAlbumCards isAdded={false} albums={searchResults} artistName={searchData.query} />}
 
         <Paginator
           setSearchData={setSearchData}

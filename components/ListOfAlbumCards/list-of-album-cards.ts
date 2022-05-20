@@ -19,6 +19,11 @@ export const ListOfAlbumCardsContainer = styled.section`
         display: grid;
         grid-template-columns: repeat(4,1fr);
         grid-gap: 25px;
+
+        .no__found__albums{
+            font-size: 4rem !important;
+            color: var(--white);
+        }
     }
     @media (max-width: 894px) {
         .list-albums__wrapper {

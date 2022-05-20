@@ -15,6 +15,7 @@ export const SearchContainer = styled.div`
         font-weight: 500;
         outline: none;
         background-color:  transparent;
+        font-weight: bold;
     }
     .button__wrapper {
         width: 20%;
