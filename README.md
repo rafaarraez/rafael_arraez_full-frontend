@@ -1,5 +1,21 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Configuration
+
+First of all, we must create an .env file in the root folder of the project with the following environment variables:
+
+```
+SPOTIFY_CLIENT_ID=
+SPOTIFY_CLIENT_SECRET=
+NEXTAUTH_URL=
+NEXTAUTH_SECRET=
+```
+## Tips
+```
+for the NEXTAUTH_URL variable we will use the url of our project, e.g.: http://localhost:3000/
+
+for NEXTAUTH_SECRET we use a random string
+```
 ## Getting Started
 
 First, run the development server:
