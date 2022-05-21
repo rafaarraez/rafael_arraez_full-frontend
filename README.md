@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Configuration
 
-First of all, we must create an .env file in the root folder of the project with the following environment variables:
+We must create an .env file in the root folder of the project with the following environment variables:
 
 ```
 SPOTIFY_CLIENT_ID=
@@ -18,7 +18,15 @@ for NEXTAUTH_SECRET we use a random string
 ```
 ## Getting Started
 
-First, run the development server:
+First of all, we must install the necessary dependencies
+
+```bash
+npm install
+# or
+yarn dev
+```
+
+and then run the development server:
 
 ```bash
 npm run dev
