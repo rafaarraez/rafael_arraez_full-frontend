@@ -10,3 +10,13 @@ export const MainSearch = styled.main`
     height: auto;
     padding: 0 10%;
 `;
+
+export const LoadingWrapper = styled.div`
+    margin: 0 auto;
+    padding 5rem;
+    h1{
+        color: white;
+        font-size: 5rem;
+        text-align: center;
+    }
+`;

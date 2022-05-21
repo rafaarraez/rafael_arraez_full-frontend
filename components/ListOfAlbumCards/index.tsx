@@ -1,10 +1,17 @@
 import React, { useEffect, useMemo } from "react";
-import { ListOfAlbumCardsContainer } from "./list-of-album-cards";
+import { ErrorMessage, ListOfAlbumCardsContainer } from "./list-of-album-cards";
 
 import CardAlbum from "../CardAlbum";
 import { Album } from "../../types/types";
 
-const ListOfAlbumCards: React.FC<any> = ({ albums, isAdded, artistName }) => {
+const ListOfAlbumCards: React.FC<any> = ({ albums, isAdded, artistName, error }) => {
+
+
+  if (error.length > 0) {
+    return (
+      <ErrorMessage className="no__found__albums">{error}</ErrorMessage>
+    )
+  }
 
   return (
     <ListOfAlbumCardsContainer>

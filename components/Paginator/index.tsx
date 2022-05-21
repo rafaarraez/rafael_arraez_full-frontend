@@ -38,9 +38,10 @@ const Paginator: React.FC<any> = ({
 				<MdOutlineArrowBackIos color={"var(--white)"} size={20} />
 			</button>
 
-			{paginationRange!.map(pageNumber => {
+			{paginationRange!.map((pageNumber, index) => {
 				if (pageNumber === DOTS) {
 					return <p
+						key={index}
 						className="paginator__item"
 						style={
 							currentPage === pageNumber
@@ -51,6 +52,7 @@ const Paginator: React.FC<any> = ({
 				}
 				return (
 					<p
+						key={index}
 						className="paginator__item"
 						style={
 							currentPage === pageNumber

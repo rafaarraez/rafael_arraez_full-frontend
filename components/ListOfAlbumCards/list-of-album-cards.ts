@@ -36,3 +36,8 @@ export const ListOfAlbumCardsContainer = styled.section`
         }   
     }
 `;
+
+export const ErrorMessage = styled.h1`
+    font-size: 4rem !important;
+            color: var(--white);
+`

@@ -1,15 +1,15 @@
-import type { GetServerSideProps, NextPage } from "next";
-import React, { useState, useEffect } from "react";
-import SearchInput from "../components/SearchInput";
-import HeroAlbum from "../components/HeroAlbum";
-import ListOfAlbumCards from "../components/ListOfAlbumCards";
-import Paginator from "../components/Paginator";
-import { MainSearch } from "../styles/layout";
-import { getSession } from "next-auth/react";
-import { isAuthenticated } from "../utils/isAuthenticated";
-import axios from 'axios'
-import { Album, Paginate } from "../types/types";
+import axios, { AxiosError } from 'axios'
 import Head from "next/head";
+import { useState, useEffect } from "react";
+import { getSession } from "next-auth/react";
+import type { GetServerSideProps, NextPage } from "next";
+import Paginator from "../components/Paginator";
+import HeroAlbum from "../components/HeroAlbum";
+import SearchInput from "../components/SearchInput";
+import ListOfAlbumCards from "../components/ListOfAlbumCards";
+import { Album, Paginate } from "../types/types";
+import { isAuthenticated } from "../utils/isAuthenticated";
+import { LoadingWrapper, MainSearch } from "../styles/layout";
 
 const ASSearch: NextPage<any> = () => {
   const [pagination, setPagination] = useState<Paginate>({
@@ -20,21 +20,21 @@ const ASSearch: NextPage<any> = () => {
     totalPages: 0,
     totalItems: 0
   });
-  const [pages, setPages] = useState<any>([]);
+
   const [searchData, setSearchData] = useState({
     query: 'nirvana',
     offset: 0
   })
   const [searchResults, setSearchResults] = useState<Album[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
+  const [error, setError] = useState<string>('');
   useEffect(() => {
 
     const searchAlbums = async () => {
       setIsLoading(true);
+      setError('');
       try {
-        const { data: { albums } } = await axios(`/api/search?query=${searchData.query}&offset=${searchData.offset}`);
-        console.log(albums);
+        const { data: { albums } } = await axios.get(`/api/search?query=${searchData.query}&offset=${searchData.offset}`);
         setPagination({
           contentPerPage: albums.limit,
           countStart: 1,
@@ -44,15 +44,14 @@ const ASSearch: NextPage<any> = () => {
           totalItems: albums.total
         })
         setSearchResults(albums.items);
-      } catch (error) {
-        console.log(error);
+      } catch (error: any) {
+        setError(error.message);
+
       }
       setIsLoading(false);
     }
     searchAlbums();
   }, [searchData]);
-
-
 
   return (
     <>
@@ -65,7 +64,17 @@ const ASSearch: NextPage<any> = () => {
           <SearchInput setSearchData={setSearchData} />
         </HeroAlbum>
 
-        {isLoading ? <h1>LODING DATRA</h1> : <ListOfAlbumCards isAdded={false} albums={searchResults} artistName={searchData.query} />}
+        {isLoading ?
+          <LoadingWrapper
+          >
+            <h1>
+              Loading data...
+            </h1>
+          </LoadingWrapper>
+          : (
+            <ListOfAlbumCards isAdded={false} albums={searchResults} artistName={searchData.query} error={error} />
+          )
+        }
 
         <Paginator
           setSearchData={setSearchData}
