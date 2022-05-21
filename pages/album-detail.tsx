@@ -33,16 +33,15 @@ const ASAlbumDetail: NextPage = () => {
         </HeroAlbum>
 
         {isLoading ?
-          <LoadingWrapper
-          >
+          <LoadingWrapper>
             <h1>
               Loading data...
             </h1>
           </LoadingWrapper>
           :
           <ListOfAlbumCards isAdded={true} albums={albums} error={error} />
-
         }
+
       </MainSearch>
     </>
   )

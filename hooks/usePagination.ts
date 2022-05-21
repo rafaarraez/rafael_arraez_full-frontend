@@ -11,7 +11,7 @@ const range = (start: number, end: number): Array<number> => {
 export const usePagination = ({
     totalCount,
     pageSize,
-    siblingCount = 2,
+    siblingCount = 1,
     currentPage
 }: UsePagination) => {
 

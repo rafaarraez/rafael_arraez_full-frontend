@@ -28,8 +28,8 @@ const ASSearch: NextPage<any> = () => {
   const [searchResults, setSearchResults] = useState<Album[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
-  useEffect(() => {
 
+  useEffect(() => {
     const searchAlbums = async () => {
       setIsLoading(true);
       setError('');
@@ -46,7 +46,6 @@ const ASSearch: NextPage<any> = () => {
         setSearchResults(albums.items);
       } catch (error: any) {
         setError(error.message);
-
       }
       setIsLoading(false);
     }
