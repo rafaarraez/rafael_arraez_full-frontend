@@ -10,8 +10,6 @@ export const customFetch = async (url: string, session: MySession, method: strin
                 'Accept': 'application/json'
             },
         }).then((res) => {
-            console.log(res);
-
             return res.json()
         });
 

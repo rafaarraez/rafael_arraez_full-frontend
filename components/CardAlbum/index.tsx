@@ -17,13 +17,21 @@ const CardAlbum: React.FC<any> = ({ dataAlbum, isActive }) => {
   }
 
   const deleteItem = async (id: string) => {
-    const res = await axios.delete(`/api/albums?id=${id}`);
-    setAlbumStatus(false);
+    try {
+      await axios.delete(`/api/albums?id=${id}`);
+      setAlbumStatus(false);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const addItem = async (id: string) => {
-    const res = await axios.put(`/api/albums?id=${id}`);
-    setAlbumStatus(true);
+    try {
+      await axios.put(`/api/albums?id=${id}`);
+      setAlbumStatus(true);
+    } catch (error) {
+      console.log(error);
+    }
   }
   return (
     <CardAlbumContainer>

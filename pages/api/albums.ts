@@ -25,7 +25,6 @@ export default async function handler(
     }
 
     if (req.method == 'DELETE') {
-        console.log(req.method, id);
         try {
             const searchResults = await customFetch(
                 `https://api.spotify.com/v1/me/albums?ids=${id}`,
@@ -39,7 +38,6 @@ export default async function handler(
     }
 
     if (req.method == 'PUT') {
-        console.log(req.method, id);
         try {
             const searchResults = await customFetch(
                 `https://api.spotify.com/v1/me/albums?ids=${id}`,
