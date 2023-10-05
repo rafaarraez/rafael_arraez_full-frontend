@@ -40,11 +40,11 @@ export interface Album {
 export interface Artist {
     id: string;
     name: string;
-    images?: [Image];
+    images?: Image[];
     followers?: {
         total: number;
     };
-    genres?: [string];
+    genres?: string[];
     external_urls: ExternalUrls;
     type?: string;
 }
